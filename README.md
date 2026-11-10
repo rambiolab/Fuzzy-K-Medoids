@@ -43,7 +43,7 @@ Given an *n × n* distance matrix *d*, *k* clusters and a fuzzifier *m* > 1:
 
    so memberships of a sample sum to 1. A sample at distance 0 from a medoid (the medoid itself, or an exact duplicate) gets membership 1 in that cluster and 0 elsewhere.
 3. **Medoid update.** For each cluster, the new medoid is the sample *t* that minimises Σ<sub>i</sub> u<sub>ij</sub><sup>m</sup> · d(i, t), searched over all samples.
-4. Repeat 2–3 until the memberships stop changing (or `max_iter` is reached).
+4. Repeat until the memberships stop changing (or `max_iter` is reached).
 
 The objective being minimised is
 
@@ -143,7 +143,7 @@ Limits:
 - **m → 1:** memberships become 0 or 1, i.e. hard k-medoids.
 - **m → ∞:** every membership tends to 1/k, and the clustering carries no information.
 
-The default m = 2 is the usual choice for fuzzy c-means. For FCMdd, Krishnapuram et al. (2001) recommend m between 1 and 1.5, because at higher values the medoids tend to stop moving between iterations. Memberships also depend on the scale of the distances, so choose m for your own data, for example by checking how many samples get a clear highest membership. Use the same m in `fuzzy_objective` as in the fit, since the objective depends on it.
+The default is m = 2. 
 
 #### Initialisation: `init` and `random_state`
 
